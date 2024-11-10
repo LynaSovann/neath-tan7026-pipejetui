@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: neath-tan7026-pipejetui-https-ingress
+  namespace: neath-tan7026-pipejetui
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - neath-tan7026-pipejetui.assessify.org
+      secretName: neath-tan7026-pipejetui-secret-tls
+  rules:
+    - host: neath-tan7026-pipejetui.assessify.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: neath-tan7026-pipejetui-service
+                port:
+                  number: 8131
