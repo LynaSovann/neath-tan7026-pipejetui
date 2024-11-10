@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: neath-tan7026-pipejetui-deployment
+  labels:
+    app: neath-tan7026-pipejetui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: neath-tan7026-pipejetui
+  template:
+    metadata:
+      labels:
+        app: neath-tan7026-pipejetui
+    spec:
+      containers:
+        - name: neath-tan7026-pipejetui-container
+          image: pipejet/neath-tan7026-pipejetui:0
+          ports:
+            - containerPort: 3000
